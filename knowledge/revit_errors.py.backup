@@ -1,0 +1,804 @@
+REVIT_ERRORS = {
+
+    "Revit sekin ishlayapti": {
+        "sabab": [
+            "Model juda katta yoki og‘irlashib ketgan.",
+            "Keraksiz CAD link/import fayllari bor.",
+            "Og‘ir yoki noto‘g‘ri yaratilgan Family'lar ko‘p.",
+            "Ko‘p elementlarda murakkab geometriya ishlatilgan.",
+            "Ko‘rinishda juda ko‘p element bir vaqtning o‘zida hisoblanmoqda."
+        ],
+        "yechim": [
+            "Manage → Purge Unused orqali keraksiz elementlarni tozalang.",
+            "Keraksiz CAD import va linklarni o‘chiring yoki unload qiling.",
+            "Og‘ir Family'larni yengilroq variantga almashtiring.",
+            "3D View'da kerak bo‘lmagan kategoriyalarni vaqtincha yashiring.",
+            "Kerak bo‘lmagan warninglarni kamaytiring.",
+            "Markaziy fayl bilan ishlayotgan bo‘lsangiz, modelni muntazam audit qiling."
+        ],
+        "misol": "500 MB dan katta loyiha ochilganda Revit juda sekin javob berishi mumkin.",
+        "maslahat": "Revit sekinlashganda birinchi navbatda modelni ayblamang — og‘ir Family, CAD va linklarni tekshiring."
+    },
+
+    "Revit qotib qolayapti": {
+        "sabab": [
+            "Juda og‘ir view ochilgan.",
+            "Murakkab 3D geometriya hisoblanmoqda.",
+            "Family yoki linked model juda og‘ir.",
+            "RAM yetishmayapti."
+        ],
+        "yechim": [
+            "3D View'ni yopib, oddiy Floor Plan oching.",
+            "Visual Style'ni Wireframe yoki Hidden Line qilib ko‘ring.",
+            "Keraksiz linklarni vaqtincha unload qiling.",
+            "Og‘ir Family'larni tekshiring.",
+            "Revitni yopib qayta ishga tushiring."
+        ],
+        "misol": "Katta bino loyihasida 3D view ochilganda Revit bir necha soniya javob bermasligi mumkin.",
+        "maslahat": "Doimiy ravishda juda og‘ir 3D view bilan ishlamang."
+    },
+
+    "Revit fayli ochilmayapti": {
+        "sabab": [
+            "Fayl buzilgan.",
+            "Revit versiyasi mos emas.",
+            "Linked yoki family fayllarida muammo bor.",
+            "Network yoki BIM 360/ACC ulanishida muammo mavjud."
+        ],
+        "yechim": [
+            "Faylni Open → Audit orqali ochishga urinib ko‘ring.",
+            "Backup fayldan foydalaning.",
+            "Fayl qaysi Revit versiyasida yaratilganini tekshiring.",
+            "Local fayl bo‘lsa yangi Local yarating.",
+            "Kerak bo‘lsa backup nusxadan tiklang."
+        ],
+        "misol": "Revit 2026 da yaratilgan faylni Revit 2025 da to‘g‘ridan-to‘g‘ri ochib bo‘lmaydi.",
+        "maslahat": "Muhim loyihalarda backup nusxalarni muntazam saqlang."
+    },
+
+    "Family yuklanmayapti": {
+        "sabab": [
+            "Family fayli buzilgan.",
+            "Family kategoriyasi noto‘g‘ri.",
+            "Fayl boshqa Revit versiyasida yaratilgan.",
+            "Family ichida constraint yoki reference muammosi mavjud."
+        ],
+        "yechim": [
+            "Family faylini alohida ochib tekshiring.",
+            "Load into Project orqali qayta yuklang.",
+            "Family Editor'da warninglarni tekshiring.",
+            "Kerak bo‘lsa Family'ni yangi faylga qayta yarating."
+        ],
+        "misol": "Eshik Family'si Project'ga yuklanmayotgan bo‘lsa, Family Editor'da uning constraintlarini tekshirish kerak.",
+        "maslahat": "Internetdan yuklangan har qanday Family'ni loyihaga qo‘shishdan oldin tekshirib oling."
+    },
+
+    "Room is not enclosed": {
+        "sabab": [
+            "Room chegarasi yopilmagan.",
+            "Wall orasida kichik bo‘shliq mavjud.",
+            "Room Bounding belgisi o‘chirilgan.",
+            "Linked model xona chegarasi sifatida ishlatilmayapti."
+        ],
+        "yechim": [
+            "Xonani o‘rab turgan devorlarni tekshiring.",
+            "Properties ichida Room Bounding parametrini tekshiring.",
+            "Architecture → Room Separator yordamida chegarani yoping.",
+            "Linked modeldan foydalanayotgan bo‘lsangiz uning Room Bounding holatini tekshiring."
+        ],
+        "misol": "Koridor uchun Room qo‘yilganda eshik yoki devor orasidagi kichik bo‘shliq sabab xona yopilmagan deb chiqishi mumkin.",
+        "maslahat": "Room ishlamayotgan bo‘lsa avval xona chegarasini tekshiring."
+    },
+
+    "Highlighted walls overlap": {
+        "sabab": [
+            "Bir joyda ikkita devor ustma-ust tushgan.",
+            "Copy yoki Move paytida duplicate wall hosil bo‘lgan."
+        ],
+        "yechim": [
+            "Muammoli devorlarni tekshiring.",
+            "Keraksiz duplicate elementni o‘chiring.",
+            "Select All Instances orqali o‘xshash elementlarni qidiring."
+        ],
+        "misol": "Plan chizishda devorni ikki marta Copy qilish natijasida overlap warning chiqishi mumkin.",
+        "maslahat": "Duplicate elementlarni muntazam tekshirib turing."
+    },
+
+    "Elements are slightly off axis": {
+        "sabab": [
+            "Element aniq gorizontal yoki vertikal emas.",
+            "Element juda kichik burchakka burilgan."
+        ],
+        "yechim": [
+            "Elementni tanlang.",
+            "Properties va Modify orqali alignmentni tekshiring.",
+            "Elementni qayta chizing yoki Align buyrug‘idan foydalaning.",
+            "Kerak bo‘lsa elementni aniq 0 yoki 90 darajaga keltiring."
+        ],
+        "misol": "Devor 90° o‘rniga 89.999° bilan chizilgan bo‘lsa warning chiqishi mumkin.",
+        "maslahat": "Model yaratishda Temporary Dimensions va snappingdan foydalaning."
+    },
+
+    "Can't make type": {
+        "sabab": [
+            "Family parametrlari o‘zaro konflikt qilmoqda.",
+            "Constraintlar bir-biriga zid.",
+            "Type parametrlari noto‘g‘ri sozlangan."
+        ],
+        "yechim": [
+            "Family Editor'ga kiring.",
+            "Constraints va Dimensions'ni tekshiring.",
+            "Parametrlar orasidagi bog‘lanishni tekshiring.",
+            "Ortiqcha lock va constraintlarni olib tashlang."
+        ],
+        "misol": "Deraza Family'sida width va reference plane noto‘g‘ri bog‘langan bo‘lsa yangi Type yaratib bo‘lmasligi mumkin.",
+        "maslahat": "Family yaratishda ortiqcha constraint ishlatmang."
+    },
+
+    "Constraints are not satisfied": {
+        "sabab": [
+            "Elementlarning constraintlari bir-biriga zid.",
+            "Locked dimension noto‘g‘ri qiymatga ega.",
+            "Family ichida ortiqcha cheklov mavjud."
+        ],
+        "yechim": [
+            "Muammoli constraintni toping.",
+            "Keraksiz locklarni olib tashlang.",
+            "Dimensionlarni qayta tekshiring.",
+            "Family Editor'da reference plane'larni tekshiring."
+        ],
+        "misol": "Eshik kengligini bir vaqtning o‘zida ikkita turli parametr bilan boshqarish constraint konfliktiga olib kelishi mumkin.",
+        "maslahat": "Parametrlar orasidagi bog‘lanishni sodda saqlang."
+    },
+
+    "Duplicate Instances": {
+        "sabab": [
+            "Bir xil element bir joyga ikki marta qo‘yilgan.",
+            "Copy/Paste yoki Array natijasida duplicate hosil bo‘lgan."
+        ],
+        "yechim": [
+            "Manage → Review Warnings orqali warningni toping.",
+            "Muammoli elementni tekshiring.",
+            "Keraksiz nusxani o‘chiring."
+        ],
+        "misol": "Bitta ustun joyiga ikki marta qo‘yilgan bo‘lsa duplicate warning chiqadi.",
+        "maslahat": "Modelni topshirishdan oldin Review Warnings qiling."
+    },
+
+    "CAD import juda og‘ir": {
+        "sabab": [
+            "DWG faylda juda ko‘p layer va obyekt mavjud.",
+            "CAD faylda keraksiz bloklar mavjud.",
+            "Import qilishdan oldin DWG tozalanmagan."
+        ],
+        "yechim": [
+            "AutoCAD'da PURGE ishlating.",
+            "OVERKILL bilan duplicate line'larni tozalang.",
+            "Keraksiz layerlarni o‘chiring.",
+            "Revit'da Import emas, kerak bo‘lsa Link CAD ishlating."
+        ],
+        "misol": "Topografiya DWG fayli juda katta bo‘lsa Revit modelini sezilarli sekinlashtirishi mumkin.",
+        "maslahat": "DWG'ni Revit'ga olib kirishdan oldin AutoCAD'da tozalang."
+    },
+
+    "CAD link ko‘rinmayapti": {
+        "sabab": [
+            "CAD link unload qilingan.",
+            "Visibility/Graphics orqali CAD kategoriyasi yashirilgan.",
+            "View Range yoki crop region ta'sir qilmoqda.",
+            "CAD boshqa koordinatada joylashgan."
+        ],
+        "yechim": [
+            "Manage → Manage Links orqali CAD holatini tekshiring.",
+            "VG/VV orqali Imported Categories'ni tekshiring.",
+            "Zoom to Fit qiling.",
+            "CAD fayl koordinatasini tekshiring."
+        ],
+        "misol": "AutoCAD plan Revit'da Link qilingan, lekin Floor Plan'da ko‘rinmasa Visibility/Graphics tekshiriladi.",
+        "maslahat": "CAD bilan ishlaganda origin va koordinatalarni nazorat qiling."
+    },
+
+    "Revit render qora chiqyapti": {
+        "sabab": [
+            "Lighting noto‘g‘ri.",
+            "Camera yoki exposure sozlamalari muammoli.",
+            "Material yoki render engine sozlamalari noto‘g‘ri."
+        ],
+        "yechim": [
+            "Sun va Artificial Lights sozlamalarini tekshiring.",
+            "Exposure qiymatini tekshiring.",
+            "Render Quality va Lighting parametrlarini tekshiring.",
+            "Materiallarda haddan tashqari qora rang ishlatilmaganini tekshiring."
+        ],
+        "misol": "Interyer renderida barcha xona qora chiqsa avval artificial lighting va exposure tekshiriladi.",
+        "maslahat": "Renderdan oldin oddiy Low Quality preview qiling."
+    },
+
+    "View Range muammosi": {
+        "sabab": [
+            "Top, Cut Plane yoki Bottom qiymatlari noto‘g‘ri.",
+            "Elementlar kerakli balandlik oralig‘ida emas."
+        ],
+        "yechim": [
+            "Floor Plan → Properties → View Range'ni oching.",
+            "Top, Cut Plane, Bottom va View Depth qiymatlarini tekshiring.",
+            "Element balandligini tekshiring."
+        ],
+        "misol": "Deraza Floor Plan'da ko‘rinmasa Cut Plane balandligi sabab bo‘lishi mumkin.",
+        "maslahat": "Har bir plan uchun View Range'ni loyiha talabiga moslang."
+    },
+
+    "Element ko‘rinmayapti": {
+        "sabab": [
+            "Element Hide qilinmaganmi tekshirish kerak.",
+            "Category Visibility o‘chirilgan.",
+            "Workset yopiq.",
+            "View Filter yashirgan.",
+            "Phase yoki Design Option noto‘g‘ri."
+        ],
+        "yechim": [
+            "Reveal Hidden Elements rejimini yoqing.",
+            "VG/VV ni tekshiring.",
+            "Worksets holatini tekshiring.",
+            "Filters va Design Options'ni tekshiring.",
+            "Phase sozlamalarini tekshiring."
+        ],
+        "misol": "Devor 3D View'da bor, lekin Floor Plan'da ko‘rinmasa View Visibility sozlamalari tekshiriladi.",
+        "maslahat": "Element yo‘q deb o‘chirishdan oldin Visibility sozlamalarini tekshiring."
+    },
+
+    "Family parametri ishlamayapti": {
+        "sabab": [
+            "Parameter noto‘g‘ri turda yaratilgan.",
+            "Formula noto‘g‘ri.",
+            "Parameter Type va Category mos emas."
+        ],
+        "yechim": [
+            "Family Editor → Family Types'ni oching.",
+            "Parameter nomi va turini tekshiring.",
+            "Formula sintaksisini tekshiring.",
+            "Parameter Instance yoki Type ekanini tekshiring."
+        ],
+        "misol": "Eshik kengligini parametr orqali o‘zgartirib bo‘lmasa Family Types ichidagi Width parametrini tekshirish kerak.",
+        "maslahat": "Family parametrlarini oldindan rejalashtirib yarating."
+    },
+
+    "Revit template topilmadi": {
+        "sabab": [
+            "Project Template o‘rnatilmagan.",
+            "Revit o‘rnatilishida Content paketlari tanlanmagan.",
+            "Template path noto‘g‘ri."
+        ],
+        "yechim": [
+            "Revit Options → File Locations'ni tekshiring.",
+            "Project Templates path'ini tekshiring.",
+            "Autodesk Content Library o‘rnatilganini tekshiring.",
+            "Kerakli template'ni qayta ko‘rsating."
+        ],
+        "misol": "New Project bosilganda Architectural Template chiqmasa template path yoki Content Library muammosi bo‘lishi mumkin.",
+        "maslahat": "O‘z loyihalaringiz uchun standart template yaratib saqlang."
+    },
+
+    "Revit Family Library yo‘q": {
+        "sabab": [
+            "Autodesk Revit Content Libraries o‘rnatilmagan.",
+            "Family papkasi ko‘chirilgan yoki o‘chirilgan."
+        ],
+        "yechim": [
+            "Autodesk Content Library o‘rnatilganini tekshiring.",
+            "Revit Family path'larini tekshiring.",
+            "Kerakli Autodesk Content paketini qayta o‘rnating."
+        ],
+        "misol": "Door yoki Window yuklashda standart Family'lar topilmasa Content Library tekshiriladi.",
+        "maslahat": "Family kutubxonasini alohida backup qilib saqlang."
+    },
+
+    "Autodesk Access orqali Revit o‘rnatilmayapti": {
+        "sabab": [
+            "Internet ulanishida muammo.",
+            "Autodesk Access noto‘g‘ri ishlayapti.",
+            "Windows servislarida muammo.",
+            "Eski Autodesk komponentlari konflikt qilmoqda."
+        ],
+        "yechim": [
+            "Internet ulanishini tekshiring.",
+            "Autodesk Access'ni qayta ishga tushiring.",
+            "Windows'ni restart qiling.",
+            "Autodesk Access'ni yangilang.",
+            "Eski Autodesk komponentlarini tekshiring."
+        ],
+        "misol": "Revit installation jarayoni foizning ma'lum joyida to‘xtab qolishi mumkin.",
+        "maslahat": "O‘rnatish vaqtida internetni barqaror saqlang."
+    },
+
+    "Revit installation failed": {
+        "sabab": [
+            "Oldingi Revit o‘rnatilishidan qolgan fayllar mavjud.",
+            "Yetarli disk joyi yo‘q.",
+            "Autodesk servislarida muammo bor.",
+            "Windows permissions muammosi."
+        ],
+        "yechim": [
+            "Diskda yetarli bo‘sh joy borligini tekshiring.",
+            "Autodesk Access orqali installation holatini tekshiring.",
+            "Kompyuterni restart qiling.",
+            "Kerak bo‘lsa Autodesk uninstall vositalari orqali eski komponentlarni olib tashlang.",
+            "Administrator huquqlari bilan o‘rnatishni tekshiring."
+        ],
+        "misol": "Oldingi Revit versiyasi noto‘g‘ri o‘chirilgan bo‘lsa yangi versiya installation failed berishi mumkin.",
+        "maslahat": "Revitni o‘chirishda faqat asosiy dasturni emas, kerakli Autodesk komponentlarini ham nazorat qiling."
+    },
+
+    "Revit license/sign-in muammosi": {
+        "sabab": [
+            "Autodesk account bilan login qilinmagan.",
+            "Internet yoki Autodesk authentication muammosi.",
+            "Subscription yoki license holatida muammo."
+        ],
+        "yechim": [
+            "Autodesk account'dan chiqib qayta kiring.",
+            "Internet ulanishini tekshiring.",
+            "Autodesk Access va Revit'ni qayta ishga tushiring.",
+            "License holatini Autodesk account'da tekshiring."
+        ],
+        "misol": "Revit ochilganda sign-in oynasi qayta-qayta chiqishi mumkin.",
+        "maslahat": "Account ma'lumotlarini uchinchi tomon dasturlariga bermang."
+    },
+
+    "Central Model ochilmayapti": {
+        "sabab": [
+            "Network ulanishi yo‘q.",
+            "Central faylga kirish huquqi yo‘q.",
+            "Fayl joylashgan server ishlamayapti.",
+            "Local fayl eskirgan."
+        ],
+        "yechim": [
+            "Network ulanishini tekshiring.",
+            "Central Model joylashuvini tekshiring.",
+            "Yangi Local fayl yarating.",
+            "Worksharing sozlamalarini tekshiring."
+        ],
+        "misol": "Ofis serveridagi Central Model ochilmasa avval serverga ulanish tekshiriladi.",
+        "maslahat": "Central Model bilan ishlaganda Local faylni muntazam qayta yarating."
+    },
+
+    "Synchronize with Central ishlamayapti": {
+        "sabab": [
+            "Central Model bilan aloqa uzilgan.",
+            "Boshqa foydalanuvchi elementni Edit qilmoqda.",
+            "Network sekin.",
+            "Local fayl muammoli."
+        ],
+        "yechim": [
+            "Network ulanishini tekshiring.",
+            "Reload Latest qiling.",
+            "Workset va element ownership holatini tekshiring.",
+            "Zarur bo‘lsa yangi Local fayl yarating."
+        ],
+        "misol": "Jamoaviy loyiha ustida ishlayotganda Sync tugmasi xato berishi mumkin.",
+        "maslahat": "Muhim o‘zgarishlardan keyin muntazam Synchronize with Central qiling."
+    },
+
+    "Workset yopiq": {
+        "sabab": [
+            "Kerakli Workset Closed holatda.",
+            "Foydalanuvchida Workset'ni ochish huquqi yo‘q."
+        ],
+        "yechim": [
+            "Manage → Worksets orqali Workset'larni tekshiring.",
+            "Kerakli Workset'ni Open qiling.",
+            "Reload Latest qiling."
+        ],
+        "misol": "MEP yoki Structural link ko‘rinmasa tegishli Workset yopiq bo‘lishi mumkin.",
+        "maslahat": "Katta loyihalarda Workset nomlarini standartlashtiring."
+    },
+
+    "Revit PDF export muammosi": {
+        "sabab": [
+            "View yoki Sheet sozlamalari noto‘g‘ri.",
+            "Printer/PDF konfiguratsiyasi muammoli.",
+            "Lineweight yoki visibility sozlamalari noto‘g‘ri."
+        ],
+        "yechim": [
+            "Sheet va View'larni tekshiring.",
+            "Print Preview orqali tekshiring.",
+            "PDF printer sozlamalarini tekshiring.",
+            "Lineweight va Visibility/Graphics'ni tekshiring."
+        ],
+        "misol": "Chizma PDF'ga chiqarilganda ayrim devorlar yoki dimensionlar yo‘qolishi mumkin.",
+        "maslahat": "PDF yuborishdan oldin Preview orqali tekshiring."
+    },
+
+    "Dimension ko‘rinmayapti": {
+        "sabab": [
+            "Dimension category yashirilgan.",
+            "View yoki annotation crop ta'sir qilmoqda.",
+            "Dimension boshqa view'da yaratilgan.",
+            "Visibility sozlamasi noto‘g‘ri."
+        ],
+        "yechim": [
+            "VG/VV orqali Dimensions'ni tekshiring.",
+            "Annotation Crop'ni tekshiring.",
+            "View'ni tekshiring.",
+            "Dimension style sozlamalarini tekshiring."
+        ],
+        "misol": "Floor Plan'da o‘lchamlar ko‘rinmasa Annotation Categories tekshiriladi.",
+        "maslahat": "Har bir Sheet uchun annotationlarni standart usulda boshqaring."
+    },
+
+    "Tag ko‘rinmayapti": {
+        "sabab": [
+            "Tag category yashirilgan.",
+            "Element uchun mos Tag Family mavjud emas.",
+            "View visibility noto‘g‘ri."
+        ],
+        "yechim": [
+            "VG/VV orqali Tags kategoriyasini tekshiring.",
+            "Load Family orqali kerakli Tag'ni yuklang.",
+            "Annotate → Tag by Category orqali qayta joylashtiring."
+        ],
+        "misol": "Door Tag chiqmasa Door Tag Family yuklanganini tekshirish kerak.",
+        "maslahat": "Loyiha boshlanishida kerakli annotation Family'larni tayyorlab qo‘ying."
+    },
+
+    "Revit Warninglar juda ko‘payib ketdi": {
+        "sabab": [
+            "Modelda ko‘plab duplicate yoki constraint muammolari mavjud.",
+            "Family'larda xatolar bor.",
+            "Model noto‘g‘ri boshqarilgan."
+        ],
+        "yechim": [
+            "Manage → Review Warnings'ni oching.",
+            "Warninglarni turi bo‘yicha guruhlang.",
+            "Eng ko‘p takrorlanadigan muammolarni birinchi bartaraf qiling.",
+            "Family va duplicate elementlarni tekshiring."
+        ],
+        "misol": "Loyihada yuzlab warnings yig‘ilib qolsa model sifati va barqarorligiga salbiy ta'sir qilishi mumkin.",
+        "maslahat": "Warninglarni loyiha oxirigacha yig‘ib yurmasdan muntazam tozalang."
+    },
+
+    "Revit crash bo‘lyapti": {
+        "sabab": [
+            "Model yoki Family buzilgan.",
+            "Grafik driver muammosi.",
+            "RAM/VRAM yetishmasligi.",
+            "Revit versiyasi yoki update bilan bog‘liq muammo."
+        ],
+        "yechim": [
+            "Revit va Windows update holatini tekshiring.",
+            "Grafik driverini tekshiring.",
+            "Modelni Audit bilan ochib ko‘ring.",
+            "Muammoli Family yoki linklarni aniqlang.",
+            "Revitni qayta ishga tushiring."
+        ],
+        "misol": "Muayyan 3D View ochilganda doim crash bo‘lsa, shu view yoki undagi og‘ir elementlarni tekshirish kerak.",
+        "maslahat": "Crash qaysi amal bajarilganda sodir bo‘layotganini aniqlash eng muhim diagnostika bosqichidir."
+    },
+
+    "Revit project backup kerak": {
+        "sabab": [
+            "Muhim loyiha bitta faylda saqlangan.",
+            "Fayl buzilsa oldingi versiyani tiklash qiyin bo‘ladi."
+        ],
+        "yechim": [
+            "Project faylining alohida backup nusxalarini saqlang.",
+            "Muhim milestone'larda alohida versiya yarating.",
+            "Central Model bilan ishlaganda backup sozlamalarini nazorat qiling."
+        ],
+        "misol": "Loyiha topshirilishidan oldin final versiyaning alohida nusxasi saqlanadi.",
+        "maslahat": "Backup'ni faqat kompyuterning o‘zida emas, boshqa xavfsiz joyda ham saqlash foydali."
+    },
+
+    "Revit model juda katta": {
+        "sabab": [
+            "Ko‘p unused Family va Type mavjud.",
+            "Og‘ir CAD va RVT linklar mavjud.",
+            "Keraksiz view va elementlar ko‘paygan.",
+            "Murakkab Family geometriyasi ishlatilgan."
+        ],
+        "yechim": [
+            "Purge Unused qiling.",
+            "Keraksiz linklarni unload qiling.",
+            "Og‘ir Family'larni optimallashtiring.",
+            "Keraksiz view va sheetlarni tozalang.",
+            "Modelni muntazam audit qiling."
+        ],
+        "misol": "Oddiy turar-joy loyihasi keraksiz Family va linklar sabab juda katta hajmga yetishi mumkin.",
+        "maslahat": "Model hajmini loyiha davomida nazorat qiling, oxirida emas."
+    },
+
+    "Revit koordinata muammosi": {
+        "sabab": [
+            "Survey Point va Project Base Point noto‘g‘ri ishlatilgan.",
+            "CAD fayl noto‘g‘ri koordinatada.",
+            "Linklar koordinatasi mos emas."
+        ],
+        "yechim": [
+            "Project Base Point va Survey Point'ni tekshiring.",
+            "CAD koordinatalarini tekshiring.",
+            "Acquire Coordinates yoki Publish Coordinates workflow'ini to‘g‘ri ishlating.",
+            "Link Position sozlamalarini tekshiring."
+        ],
+        "misol": "Bir nechta bino modelini bir koordinata tizimida birlashtirishda koordinata xatosi juda katta muammo tug‘diradi.",
+        "maslahat": "Loyiha boshida koordinata tizimini kelishib oling."
+    },
+
+    "Revit'da material ko‘rinmayapti": {
+        "sabab": [
+            "Material biriktirilmagan.",
+            "View Visual Style materialni ko‘rsatmayapti.",
+            "Material assetlari mavjud emas.",
+            "Texture path muammoli."
+        ],
+        "yechim": [
+            "Material Browser orqali materialni tekshiring.",
+            "Visual Style'ni Realistic qilib ko‘ring.",
+            "Material Appearance Asset'ni tekshiring.",
+            "Texture fayli mavjudligini tekshiring."
+        ],
+        "misol": "Fasad g‘isht materiali 3D view'da kulrang ko‘rinsa material appearance sozlamalarini tekshirish kerak.",
+        "maslahat": "Material kutubxonasini loyiha bo‘yicha standartlashtiring."
+    },
+
+    "Wall Join muammosi": {
+        "sabab": [
+            "Devorlar noto‘g‘ri tutashtirilgan.",
+            "Wall Join holati noto‘g‘ri.",
+            "Devorlar turli qatlamlar bilan ishlangan."
+        ],
+        "yechim": [
+            "Wall Join holatini tekshiring.",
+            "Modify → Wall Joins orqali tutashuvni sozlang.",
+            "Wall Type qatlamlarini tekshiring."
+        ],
+        "misol": "Ikki devor kesishgan joyda finish qatlamlari noto‘g‘ri tutashsa Wall Join sozlanadi.",
+        "maslahat": "Devor Type'larini boshidan standart qilib yarating."
+    },
+
+    "Door/Window devorga joylashmayapti": {
+        "sabab": [
+            "Family Wall-hosted emas.",
+            "Host devor mos emas.",
+            "Family turi noto‘g‘ri."
+        ],
+        "yechim": [
+            "Family'ni tekshiring.",
+            "Family Editor'da Host Category'ni tekshiring.",
+            "Mos Door yoki Window Family'dan foydalaning.",
+            "Kerak bo‘lsa Family'ni qayta yuklang."
+        ],
+        "misol": "Window joylashtirilayotganda devorni tanlamasa Family host sozlamasi tekshiriladi.",
+        "maslahat": "Door va Window Family'larini loyiha boshida sinab ko‘ring."
+    },
+
+    "Stair yaratib bo‘lmayapti": {
+        "sabab": [
+            "Run yoki Landing geometriyasi noto‘g‘ri.",
+            "Required number of risers bilan balandlik mos emas.",
+            "Zinapoya chegaralari noto‘g‘ri."
+        ],
+        "yechim": [
+            "Base Level va Top Level'ni tekshiring.",
+            "Desired Number of Risers qiymatini tekshiring.",
+            "Run uzunligini tekshiring.",
+            "Landing va boundary chiziqlarini qayta sozlang."
+        ],
+        "misol": "3 metr qavat balandligida zinapoya uchun riser qiymati noto‘g‘ri tanlansa Revit zinapoyani yaratmaydi.",
+        "maslahat": "Zinapoyani chizishdan oldin qavat balandligini aniq belgilang."
+    },
+
+    "Roof yaratib bo‘lmayapti": {
+        "sabab": [
+            "Roof boundary yopilmagan.",
+            "Slope Arrow noto‘g‘ri.",
+            "Sketch chiziqlari kesishib ketgan."
+        ],
+        "yechim": [
+            "Roof sketch'ni tekshiring.",
+            "Boundary'ni to‘liq yoping.",
+            "Slope Arrow parametrlarini tekshiring.",
+            "Kesishib qolgan chiziqlarni tuzating."
+        ],
+        "misol": "Notekis konturdagi bino tomini yaratishda boundary noto‘g‘ri bo‘lsa roof hosil bo‘lmaydi.",
+        "maslahat": "Roof sketch'da ortiqcha chiziq qoldirmang."
+    },
+
+    "Floor yaratib bo‘lmayapti": {
+        "sabab": [
+            "Sketch yopilmagan.",
+            "Boundary chiziqlari kesishgan.",
+            "Profil noto‘g‘ri."
+        ],
+        "yechim": [
+            "Floor boundary'ni tekshiring.",
+            "Chiziqlarni yopiq konturga keltiring.",
+            "Kesishuvchi segmentlarni tuzating."
+        ],
+        "misol": "Murakkab L-shaklli xona polini chizishda kontur yopilmasa Floor yaratib bo‘lmaydi.",
+        "maslahat": "Sketch Mode'da kontur yopilganini doim tekshiring."
+    },
+
+    "Section ko‘rinmayapti": {
+        "sabab": [
+            "Section crop region noto‘g‘ri.",
+            "Section View boshqa yo‘nalishda.",
+            "View visibility sozlamasi noto‘g‘ri."
+        ],
+        "yechim": [
+            "Section marker'ni tekshiring.",
+            "Crop Region'ni kattalashtiring.",
+            "Section View'ni ochib elementlar mavjudligini tekshiring."
+        ],
+        "misol": "Bino kesimi kerakli xonalarni ko‘rsatmasa Section Crop'ni kengaytirish kerak.",
+        "maslahat": "Sectionlarni loyiha standartiga muvofiq nomlang."
+    },
+
+    "Level ko‘rinmayapti": {
+        "sabab": [
+            "Level boshqa view'da yaratilgan.",
+            "Annotation crop yoki scope sabab ko‘rinmayapti.",
+            "Level 3D ko‘rinishda ko‘rsatilmaydi."
+        ],
+        "yechim": [
+            "Elevation yoki Section View'ni tekshiring.",
+            "Crop Region'ni tekshiring.",
+            "Level extents'ni sozlang."
+        ],
+        "misol": "Floor Plan'da yangi Level ko‘rinmasa Elevation/Section orqali tekshirish kerak.",
+        "maslahat": "Level nomlari va balandliklarini boshidan standartlashtiring."
+    },
+
+    "Revit View Template muammosi": {
+        "sabab": [
+            "View Template view sozlamalarini boshqarib turibdi.",
+            "Qo‘lda o‘zgartirishga ruxsat yo‘q."
+        ],
+        "yechim": [
+            "Properties → View Template'ni tekshiring.",
+            "Kerak bo‘lsa View Template'ni vaqtincha None qiling.",
+            "Template ichidagi Visibility/Graphics sozlamalarini tahrirlang."
+        ],
+        "misol": "Floor Plan'da devor rangini o‘zgartirib bo‘lmasa View Template sabab bo‘lishi mumkin.",
+        "maslahat": "Katta loyihalarda View Template'lar ishni juda tartibli qiladi."
+    },
+
+    "Revit Link ko‘rinmayapti": {
+        "sabab": [
+            "RVT link unload qilingan.",
+            "Link boshqa koordinatada.",
+            "Visibility/Graphics sozlamalari noto‘g‘ri."
+        ],
+        "yechim": [
+            "Manage Links orqali link holatini tekshiring.",
+            "Reload From qiling.",
+            "VG/VV → Revit Links sozlamalarini tekshiring.",
+            "Position va koordinatalarni tekshiring."
+        ],
+        "misol": "Arxitektura modelida Structural RVT link ko‘rinmasa Revit Links visibility tekshiriladi.",
+        "maslahat": "Linklarni nomlashda discipline va loyiha kodlaridan foydalaning."
+    },
+
+    "Revit o‘rnatishda disk joyi yetmayapti": {
+        "sabab": [
+            "C diskda yetarli bo‘sh joy yo‘q.",
+            "Temporary installation fayllari uchun joy yetishmayapti."
+        ],
+        "yechim": [
+            "Diskdagi bo‘sh joyni tekshiring.",
+            "Keraksiz temporary fayllarni tozalang.",
+            "Keraksiz dasturlarni olib tashlang.",
+            "O‘rnatish uchun yetarli joy bo‘lgandan keyin qayta urinib ko‘ring."
+        ],
+        "misol": "Revit installation jarayonida disk to‘lib qolsa installation muvaffaqiyatsiz tugashi mumkin.",
+        "maslahat": "Katta Autodesk dasturlarini o‘rnatishdan oldin C diskni tekshiring."
+    },
+
+    "Revit update o‘rnatilmayapti": {
+        "sabab": [
+            "Autodesk Access muammosi.",
+            "Internet uzilishi.",
+            "Oldingi update noto‘g‘ri o‘rnatilgan."
+        ],
+        "yechim": [
+            "Autodesk Access'ni qayta ishga tushiring.",
+            "Internetni tekshiring.",
+            "Windows'ni restart qiling.",
+            "Update log yoki installation holatini tekshiring."
+        ],
+        "misol": "Revit update foizda to‘xtab qolsa Autodesk Access va disk joyi tekshiriladi.",
+        "maslahat": "Update o‘rnatishdan oldin loyiha fayllarining backupini saqlang."
+    },
+
+    "Revit autosave/backup muammosi": {
+        "sabab": [
+            "Backup papkasiga yozish imkoni yo‘q.",
+            "Disk joyi kam.",
+            "Fayl joylashuvi muammoli."
+        ],
+        "yechim": [
+            "Diskdagi bo‘sh joyni tekshiring.",
+            "Fayl joylashuviga yozish huquqini tekshiring.",
+            "Project backup nusxalarini alohida saqlang."
+        ],
+        "misol": "Loyiha ishlayotganda backup yaratilmasa disk va papka permissions tekshiriladi.",
+        "maslahat": "Faqat autosave'ga ishonib qolmang."
+    },
+
+    "Revit print lineweight noto‘g‘ri": {
+        "sabab": [
+            "Lineweight sozlamalari noto‘g‘ri.",
+            "View Scale mos emas.",
+            "Object Styles yoki category lineweightlari noto‘g‘ri."
+        ],
+        "yechim": [
+            "Manage → Object Styles'ni tekshiring.",
+            "Line Weights sozlamalarini tekshiring.",
+            "View Scale'ni tekshiring.",
+            "Print Preview orqali natijani tekshiring."
+        ],
+        "misol": "1:100 fasadda devor chizig‘i haddan tashqari qalin chiqsa lineweight tekshiriladi.",
+        "maslahat": "Loyiha boshida grafik standart yarating."
+    },
+
+    "Revit fayli juda sekin saqlanyapti": {
+        "sabab": [
+            "Model juda katta.",
+            "Ko‘p linklar mavjud.",
+            "Network yoki Central Model sekin.",
+            "Disk ishlashi sust."
+        ],
+        "yechim": [
+            "Keraksiz linklarni tekshiring.",
+            "Model hajmini kamaytiring.",
+            "Network ulanishini tekshiring.",
+            "Central Model bilan ishlaganda Local faylni tekshiring."
+        ],
+        "misol": "Ofis serveridagi Central Model lokal diskka qaraganda ancha sekin saqlanishi mumkin.",
+        "maslahat": "Network BIM loyihalarida server tezligi ham muhim."
+    },
+
+    "Revit'da elementni o‘chira olmayapman": {
+        "sabab": [
+            "Element boshqa elementga bog‘langan.",
+            "Element Group yoki Design Option ichida.",
+            "Element boshqa foydalanuvchi tomonidan editable qilingan."
+        ],
+        "yechim": [
+            "Elementning host va constraintlarini tekshiring.",
+            "Group yoki Design Option holatini tekshiring.",
+            "Worksharing ownership holatini tekshiring."
+        ],
+        "misol": "Central Model'da boshqa foydalanuvchi egallab turgan elementni o‘chirishga ruxsat berilmasligi mumkin.",
+        "maslahat": "Jamoaviy loyihada boshqa foydalanuvchining elementini majburan o‘zgartirmang."
+    },
+
+    "Revit modelida warning chiqdi": {
+        "sabab": [
+            "Elementlar orasida konflikt mavjud.",
+            "Constraint noto‘g‘ri.",
+            "Duplicate yoki overlap mavjud.",
+            "Family muammoli."
+        ],
+        "yechim": [
+            "Warning oynasidagi elementlarni aniqlang.",
+            "Elementlarni modeldan toping.",
+            "Sababni bartaraf qiling.",
+            "Review Warnings orqali qayta tekshiring."
+        ],
+        "misol": "Ikki devor bir-birini kesib yuborsa Revit warning berishi mumkin.",
+        "maslahat": "Warning matnini o‘qimasdan shunchaki Close bosmang."
+    }
+
+}
+
+
+def get_revit_error(error_name):
+    return REVIT_ERRORS.get(error_name)
+
+
+def get_revit_error_names():
+    return list(REVIT_ERRORS.keys())
+
+
+if __name__ == "__main__":
+    print(f"REVIT XATOLARI: {len(REVIT_ERRORS)} ta")

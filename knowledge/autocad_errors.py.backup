@@ -1,0 +1,531 @@
+AUTOCAD_ERRORS = {
+    "Drawing ochilmayapti": {
+        "sabab": "DWG fayl buzilgan, AutoCAD versiyasi mos emas yoki fayl yo'li bilan muammo bor.",
+        "yechim": [
+            "RECOVER buyrug'ini ishga tushiring.",
+            "DWG faylni tanlang.",
+            "Tekshiruv tugashini kuting.",
+            "Keyin AUDIT buyrug'ini ishlating.",
+            "Faylni yangi nom bilan saqlang."
+        ],
+        "maslahat": "Muhim DWG fayllarning backup nusxasini saqlang."
+    },
+
+    "AutoCAD qotib qolayapti": {
+        "sabab": "DWG juda katta, Hatch ko'p, XREF og'ir yoki kompyuter resurslari yetarli emas.",
+        "yechim": [
+            "PURGE buyrug'ini ishlating.",
+            "AUDIT buyrug'ini bajaring.",
+            "Keraksiz XREFlarni tekshiring.",
+            "OVERKILL bilan takroriy obyektlarni tozalang.",
+            "Keraksiz Hatchlarni kamaytiring."
+        ],
+        "maslahat": "Katta loyihani bir nechta boshqariladigan faylga ajratish foydali."
+    },
+
+    "AutoCAD juda sekin ishlayapti": {
+        "sabab": "Katta DWG, ko'p block, XREF, Hatch yoki grafik sozlamalar sabab bo'lishi mumkin.",
+        "yechim": [
+            "PURGE qiling.",
+            "AUDIT qiling.",
+            "OVERKILL ishlating.",
+            "Keraksiz layerlarni Freeze qiling.",
+            "XREFlarni tekshiring."
+        ],
+        "maslahat": "DWGni muntazam optimallashtirib boring."
+    },
+
+    "AutoCAD crash bo'lyapti": {
+        "sabab": "Dastur fayllari, grafik driver, DWG yoki plagin bilan bog'liq muammo bo'lishi mumkin.",
+        "yechim": [
+            "AutoCADni qayta ishga tushiring.",
+            "DWGni RECOVER orqali oching.",
+            "Graphic Driverni yangilang.",
+            "AutoCAD profilini Reset qiling.",
+            "Muammo davom etsa Repair funksiyasidan foydalaning."
+        ],
+        "maslahat": "Crashdan keyin Drawing Recovery panelini tekshiring."
+    },
+
+    "Command ishlamayapti": {
+        "sabab": "Buyruq noto'g'ri yozilgan, joriy rejim mos emas yoki AutoCAD sozlamasida muammo bor.",
+        "yechim": [
+            "Buyruq nomini tekshiring.",
+            "ESC ni ikki marta bosing.",
+            "Command Line faol ekanini tekshiring.",
+            "Buyruqni qayta kiriting."
+        ],
+        "maslahat": "Buyruq ishlamasa Command Line'dagi xabarni o'qing."
+    },
+
+    "Command Line ko'rinmayapti": {
+        "sabab": "Command Line yopilgan yoki interfeys joylashuvi o'zgargan.",
+        "yechim": [
+            "CTRL+9 ni bosing.",
+            "Command Line qaytishini tekshiring.",
+            "Kerak bo'lsa Workspace'ni qayta tanlang."
+        ],
+        "maslahat": "Command Line AutoCADda eng muhim boshqaruv vositalaridan biridir."
+    },
+
+    "Layer ishlamayapti": {
+        "sabab": "Layer Lock, Freeze yoki Off holatida bo'lishi mumkin.",
+        "yechim": [
+            "Layer Properties oynasini oching.",
+            "Layer holatini tekshiring.",
+            "Lock, Freeze va Off ustunlarini tekshiring.",
+            "Kerakli layerni Set Current qiling."
+        ],
+        "maslahat": "Layerlarni tartibli nomlang."
+    },
+
+    "Layer ko'rinmayapti": {
+        "sabab": "Layer Off, Frozen yoki viewportda VP Freeze qilingan bo'lishi mumkin.",
+        "yechim": [
+            "Layer Propertiesni oching.",
+            "Layer On ekanini tekshiring.",
+            "Freeze holatini tekshiring.",
+            "Layoutda VP Freeze ustunini tekshiring.",
+            "REGENALL bajaring."
+        ],
+        "maslahat": "Model va Layoutdagi layer holatini alohida tekshiring."
+    },
+
+    "Layerga chiza olmayapman": {
+        "sabab": "Joriy layer Lock qilingan, Frozen yoki noto'g'ri layer tanlangan.",
+        "yechim": [
+            "Layer Propertiesni oching.",
+            "Joriy layer Lock qilinmaganini tekshiring.",
+            "Layer Frozen emasligini tekshiring.",
+            "Kerakli layerni Set Current qiling."
+        ],
+        "maslahat": "Chizishdan oldin Current Layerni tekshiring."
+    },
+
+    "Object ko'rinmayapti": {
+        "sabab": "Object boshqa layerda, ekran tashqarisida yoki Freeze/Off holatidagi layerda bo'lishi mumkin.",
+        "yechim": [
+            "Z Enter E Enter orqali Zoom Extents qiling.",
+            "Layer holatini tekshiring.",
+            "Object Propertiesni tekshiring.",
+            "REGENALL bajaring."
+        ],
+        "maslahat": "Zoom Extentsdan keyin ham ko'rinmasa layerlarni tekshiring."
+    },
+
+    "Objectni tanlab bo'lmayapti": {
+        "sabab": "Layer Lock qilingan, Selection sozlamasi yoki obyekt boshqa obyekt ostida bo'lishi mumkin.",
+        "yechim": [
+            "Layer Lock holatini tekshiring.",
+            "SELECTIONCYCLING sozlamasini tekshiring.",
+            "Object boshqa layerda emasligini tekshiring.",
+            "Quick Selectdan foydalanib ko'ring."
+        ],
+        "maslahat": "Layer Lock holati eng ko'p uchraydigan sabablaridan biridir."
+    },
+
+    "Hatch ishlamayapti": {
+        "sabab": "Kontur yopilmagan yoki Hatch boundary aniqlay olmayapti.",
+        "yechim": [
+            "Kontur yopiq ekanini tekshiring.",
+            "PEDIT orqali Join qiling.",
+            "HATCH buyrug'ida Pick Points ishlating.",
+            "Gaplarni tekshiring."
+        ],
+        "maslahat": "Hatch uchun yopiq kontur ishlatish eng ishonchli usul."
+    },
+
+    "Hatch juda sekin": {
+        "sabab": "Hatch pattern juda zich yoki geometriya juda murakkab.",
+        "yechim": [
+            "Hatch Scale qiymatini oshiring.",
+            "Keraksiz Hatchlarni kamaytiring.",
+            "Murakkab konturlarni soddalashtiring.",
+            "Keraksiz obyektlarni Freeze qiling."
+        ],
+        "maslahat": "Juda zich Hatch katta DWGni sekinlashtiradi."
+    },
+
+    "Hatch ko'rinmayapti": {
+        "sabab": "Hatch layeri o'chirilgan, Freeze qilingan yoki Hatch scale noto'g'ri.",
+        "yechim": [
+            "Hatch layerini tekshiring.",
+            "Layer On ekanini tekshiring.",
+            "Hatch Scale qiymatini tekshiring.",
+            "REGENALL bajaring."
+        ],
+        "maslahat": "Hatchni boshqa layerda sinab ko'ring."
+    },
+
+    "Dimension noto'g'ri chiqyapti": {
+        "sabab": "Dimension Style yoki annotative scale noto'g'ri sozlangan.",
+        "yechim": [
+            "DIMSTYLE buyrug'ini oching.",
+            "Text va Fit sozlamalarini tekshiring.",
+            "Annotative holatini tekshiring.",
+            "Measurement qiymatini tekshiring."
+        ],
+        "maslahat": "Loyiha boshida standart DIMSTYLE yarating."
+    },
+
+    "Dimension ko'rinmayapti": {
+        "sabab": "Dimension layeri o'chirilgan yoki dimension style noto'g'ri.",
+        "yechim": [
+            "Dimension layerini tekshiring.",
+            "DIMSTYLEni tekshiring.",
+            "Annotative scale ni tekshiring.",
+            "REGENALL bajaring."
+        ],
+        "maslahat": "Dimension uchun alohida layer ishlating."
+    },
+
+    "Dimension juda katta yoki kichik": {
+        "sabab": "Dimension Style scale yoki annotative scale noto'g'ri.",
+        "yechim": [
+            "DIMSTYLEni oching.",
+            "Fit bo'limini tekshiring.",
+            "Overall Scale qiymatini tekshiring.",
+            "Annotative sozlamasini tekshiring."
+        ],
+        "maslahat": "Model Space va Layout masshtablarini aralashtirmang."
+    },
+
+    "Text ko'rinmayapti": {
+        "sabab": "Text layeri o'chirilgan, rang fon bilan bir xil yoki text balandligi juda kichik.",
+        "yechim": [
+            "Text layerini tekshiring.",
+            "Text rangini tekshiring.",
+            "Text Height qiymatini tekshiring.",
+            "Zoomni tekshiring."
+        ],
+        "maslahat": "Arxitektura loyihasi uchun standart Text Style yarating."
+    },
+
+    "Font buzilib chiqyapti": {
+        "sabab": "DWGda ishlatilgan font kompyuterda mavjud emas.",
+        "yechim": [
+            "STYLE buyrug'ini oching.",
+            "Ishlatilgan fontni aniqlang.",
+            "Kerakli SHX yoki TTF fontni o'rnating.",
+            "Text Style'ni qayta tekshiring."
+        ],
+        "maslahat": "Loyiha bilan ishlatilgan fontlarni birga saqlash foydali."
+    },
+
+    "XREF ko'rinmayapti": {
+        "sabab": "XREF path noto'g'ri, fayl ko'chirilgan yoki XREF Unloaded holatida.",
+        "yechim": [
+            "XREF palitrasini oching.",
+            "Statusni tekshiring.",
+            "Reload qiling.",
+            "Pathni qayta ko'rsating."
+        ],
+        "maslahat": "XREFlarni loyiha papkasida tartibli saqlang."
+    },
+
+    "XREF Unresolved": {
+        "sabab": "AutoCAD XREF faylini ko'rsatilgan manzildan topa olmayapti.",
+        "yechim": [
+            "XREF palitrasini oching.",
+            "XREFni tanlang.",
+            "Select New Path orqali faylni toping.",
+            "Relative Path ishlatishni ko'rib chiqing."
+        ],
+        "maslahat": "XREF fayllarni asosiy loyiha bilan birga ko'chiring."
+    },
+
+    "PDF eksport sifati yomon": {
+        "sabab": "Plotter, DPI, lineweight yoki Page Setup noto'g'ri sozlangan.",
+        "yechim": [
+            "CTRL+P ni bosing.",
+            "DWG To PDF.pc3 ni tanlang.",
+            "Paper Size ni tekshiring.",
+            "Plot Style va lineweightlarni tekshiring.",
+            "Preview qiling."
+        ],
+        "maslahat": "PDF chiqarishdan oldin Previewni tekshiring."
+    },
+
+    "PDFga chiqarganda chiziqlar yo'qoladi": {
+        "sabab": "Layer Plot sozlamasi o'chirilgan yoki rang/lineweight muammosi mavjud.",
+        "yechim": [
+            "Layer Propertiesni oching.",
+            "Kerakli layerning Plot holatini tekshiring.",
+            "Plot Style ni tekshiring.",
+            "Lineweightni tekshiring.",
+            "Preview qiling."
+        ],
+        "maslahat": "Chop etilmaydigan layerlar uchun Plot belgisi o'chirilgan bo'lishi mumkin."
+    },
+
+    "Plot chiqmayapti": {
+        "sabab": "Printer, Page Setup, Plot Area yoki qog'oz formati noto'g'ri.",
+        "yechim": [
+            "CTRL+P ni bosing.",
+            "Printer nomini tekshiring.",
+            "Paper Size ni tekshiring.",
+            "Plot Area ni tekshiring.",
+            "Preview orqali natijani ko'ring."
+        ],
+        "maslahat": "Layout uchun Page Setupni oldindan saqlab qo'ying."
+    },
+
+    "DWG hajmi juda katta": {
+        "sabab": "Keraksiz block, layer, XREF, proxy object yoki takroriy geometriya ko'p.",
+        "yechim": [
+            "PURGE qiling.",
+            "AUDIT qiling.",
+            "OVERKILL ishlating.",
+            "Keraksiz XREFlarni olib tashlang.",
+            "Proxy obyektlarni tekshiring."
+        ],
+        "maslahat": "Loyihani muntazam optimallashtiring."
+    },
+
+    "DWG fayl buzilgan": {
+        "sabab": "Fayl ma'lumotlari buzilgan yoki AutoCAD noto'g'ri yopilgan bo'lishi mumkin.",
+        "yechim": [
+            "RECOVER buyrug'ini ishlating.",
+            "AUDIT → Y bajaring.",
+            "Faylni yangi nom bilan saqlang.",
+            "Backup nusxani tekshiring."
+        ],
+        "maslahat": "Muhim loyihalarni bir nechta versiyada saqlang."
+    },
+
+    "Block portlamayapti": {
+        "sabab": "Block Explodable xususiyati o'chirilgan yoki obyekt boshqa turdagi block bo'lishi mumkin.",
+        "yechim": [
+            "Blockni tanlang.",
+            "Properties oynasini oching.",
+            "Explodable xususiyatini tekshiring.",
+            "Kerak bo'lsa BEDIT orqali blockni tekshiring."
+        ],
+        "maslahat": "Blockni portlatishdan oldin uning parametrlarini tekshiring."
+    },
+
+    "Block noto'g'ri joylashadi": {
+        "sabab": "Base Point noto'g'ri tanlangan yoki insertion point noto'g'ri ishlatilgan.",
+        "yechim": [
+            "Blockni BEDIT orqali oching.",
+            "Base Pointni tekshiring.",
+            "Blockni qayta saqlang.",
+            "INSERT orqali qayta joylashtiring."
+        ],
+        "maslahat": "Block yaratishda base pointni aniq va mantiqiy nuqtadan oling."
+    },
+
+    "Block masshtabi noto'g'ri": {
+        "sabab": "Block va DWG birliklari bir-biriga mos emas.",
+        "yechim": [
+            "UNITS buyrug'ini tekshiring.",
+            "Block insertion scale ni tekshiring.",
+            "INSUNITS qiymatini tekshiring.",
+            "Blockni to'g'ri birlikda qayta yarating."
+        ],
+        "maslahat": "Block yaratishdan oldin Unitsni tekshiring."
+    },
+
+    "Polyline yopilmayapti": {
+        "sabab": "Polyline oxirgi nuqtasi boshlang'ich nuqtaga ulanmagan.",
+        "yechim": [
+            "PEDIT buyrug'ini ishlating.",
+            "Polyline ni tanlang.",
+            "Close opsiyasini tanlang.",
+            "Kerak bo'lsa Join ishlating."
+        ],
+        "maslahat": "Maydon hisoblashdan oldin polyline yopiq ekanini tekshiring."
+    },
+
+    "Polyline Join ishlamayapti": {
+        "sabab": "Segmentlar bir-biriga aniq ulanmagan yoki obyektlar mos turda emas.",
+        "yechim": [
+            "PEDIT buyrug'ini ishga tushiring.",
+            "Polyline ni tanlang.",
+            "Join opsiyasini tanlang.",
+            "Kerak bo'lsa JOIN commandidan foydalaning.",
+            "Toleranceni tekshiring."
+        ],
+        "maslahat": "Segmentlar orasidagi kichik bo'shliqlar Joinga xalaqit berishi mumkin."
+    },
+
+    "Trim ishlamayapti": {
+        "sabab": "Kesish chegarasi noto'g'ri tanlangan yoki obyektlar geometrik jihatdan mos emas.",
+        "yechim": [
+            "TRIM buyrug'ini ishga tushiring.",
+            "Kesuvchi obyektni tanlang.",
+            "Enter bosing.",
+            "Kesiladigan qismni tanlang."
+        ],
+        "maslahat": "TRIM ishlamasa obyektlar bir xil tekislikda ekanini ham tekshiring."
+    },
+
+    "Extend ishlamayapti": {
+        "sabab": "Extend qilinadigan obyekt chegaraga geometrik jihatdan yetib bormayapti.",
+        "yechim": [
+            "EXTEND buyrug'ini ishga tushiring.",
+            "Chegarani tanlang.",
+            "Enter bosing.",
+            "Extend qilinadigan obyektni tanlang."
+        ],
+        "maslahat": "Obyektlar Z koordinatalari turlicha bo'lsa muammo yuzaga kelishi mumkin."
+    },
+
+    "Offset ishlamayapti": {
+        "sabab": "Tanlangan obyekt Offset uchun mos emas yoki masofa qiymati noto'g'ri.",
+        "yechim": [
+            "OFFSET buyrug'ini ishga tushiring.",
+            "Distance kiriting.",
+            "Obyektni tanlang.",
+            "Kerakli tomonni tanlang."
+        ],
+        "maslahat": "Polyline va line obyektlarda Offsetni alohida tekshirib ko'ring."
+    },
+
+    "Offset noto'g'ri tomonga ketadi": {
+        "sabab": "Offset paytida noto'g'ri tomon tanlangan.",
+        "yechim": [
+            "OFFSET buyrug'ini ishga tushiring.",
+            "Masofani kiriting.",
+            "Obyektni tanlang.",
+            "Kerakli tomonni sichqoncha bilan belgilang."
+        ],
+        "maslahat": "Ichkariga yoki tashqariga offset qilish uchun tanlash nuqtasiga e'tibor bering."
+    },
+
+    "Move ishlamayapti": {
+        "sabab": "Obyekt Lock qilingan layerda yoki selection muammosi mavjud.",
+        "yechim": [
+            "Obyektni tanlang.",
+            "Layer Lock holatini tekshiring.",
+            "MOVE buyrug'ini ishga tushiring.",
+            "Base point tanlang.",
+            "Ikkinchi nuqtani belgilang."
+        ],
+        "maslahat": "Layer Lock qilingan bo'lsa obyektni ko'chirib bo'lmaydi."
+    },
+
+    "Copy ishlamayapti": {
+        "sabab": "Selection yoki layer bilan bog'liq muammo bo'lishi mumkin.",
+        "yechim": [
+            "Obyektni tanlang.",
+            "Layer Lock holatini tekshiring.",
+            "COPY buyrug'ini ishga tushiring.",
+            "Base point tanlang.",
+            "Destination point tanlang."
+        ],
+        "maslahat": "COPY uchun Ctrl+C va Ctrl+V ham ishlatilishi mumkin."
+    },
+
+    "Scale noto'g'ri ishlayapti": {
+        "sabab": "Base point yoki scale factor noto'g'ri tanlangan.",
+        "yechim": [
+            "SCALE buyrug'ini ishga tushiring.",
+            "Obyektni tanlang.",
+            "Base pointni aniq belgilang.",
+            "Scale factorni kiriting."
+        ],
+        "maslahat": "Aniq masshtablash uchun Reference opsiyasidan foydalanish mumkin."
+    },
+
+    "Rotate noto'g'ri aylanadi": {
+        "sabab": "Base point noto'g'ri tanlangan yoki burchak noto'g'ri kiritilgan.",
+        "yechim": [
+            "ROTATE buyrug'ini ishga tushiring.",
+            "Obyektni tanlang.",
+            "Base point belgilang.",
+            "Burchakni kiriting."
+        ],
+        "maslahat": "Aniq aylantirish uchun Reference opsiyasi foydali."
+    },
+
+    "Zoom juda uzoqqa ketdi": {
+        "sabab": "DWGda uzoqda joylashgan keraksiz obyekt mavjud yoki Zoom Extents ishlatilgan.",
+        "yechim": [
+            "Z Enter E Enter bajaring.",
+            "Uzoqda qolib ketgan obyektlarni qidiring.",
+            "Keraksiz obyektlarni o'chiring.",
+            "PURGE va AUDIT bajaring."
+        ],
+        "maslahat": "Uzoqda qolgan bitta obyekt ham chizmani juda kichik ko'rsatishi mumkin."
+    },
+
+    "Snap noto'g'ri ishlayapti": {
+        "sabab": "Snap mode yoki grid sozlamalari noto'g'ri.",
+        "yechim": [
+            "F9 bilan Snapni tekshiring.",
+            "DSETTINGS oynasini oching.",
+            "Snap spacing qiymatini tekshiring.",
+            "Grid sozlamalarini tekshiring."
+        ],
+        "maslahat": "Grid Snap va Object Snap bir xil narsa emas."
+    },
+
+    "Ortho ishlamayapti": {
+        "sabab": "Ortho rejimi o'chirilgan yoki boshqa tracking rejimi faol.",
+        "yechim": [
+            "F8 ni bosing.",
+            "Status bardagi Ortho indikatorini tekshiring.",
+            "Command Line holatini tekshiring."
+        ],
+        "maslahat": "Ortho faqat gorizontal va vertikal yo'nalishlarni cheklaydi."
+    },
+
+    "Object Snap ishlamayapti": {
+        "sabab": "Object Snap o'chirilgan yoki kerakli snap nuqtalari tanlanmagan.",
+        "yechim": [
+            "F3 ni bosing.",
+            "DSETTINGSni oching.",
+            "Endpoint, Midpoint, Center kabi snaplarni belgilang.",
+            "Object Snap Trackingni tekshiring."
+        ],
+        "maslahat": "Keraksiz snaplarni o'chirish tanlash aniqligini oshiradi."
+    },
+
+    "Layout oq chiqyapti": {
+        "sabab": "Viewport, Plot Area yoki layer Plot sozlamalari noto'g'ri.",
+        "yechim": [
+            "Layoutga o'ting.",
+            "Viewportni tekshiring.",
+            "Page Setupni tekshiring.",
+            "Layerlarning Plot holatini tekshiring.",
+            "Preview qiling."
+        ],
+        "maslahat": "Layoutdagi viewport va Modeldagi geometriyani alohida tekshiring."
+    },
+
+    "Viewport ishlamayapti": {
+        "sabab": "Viewport Lock qilingan, layer Freeze qilingan yoki viewport noto'g'ri sozlangan.",
+        "yechim": [
+            "Viewportni tanlang.",
+            "Display Locked holatini tekshiring.",
+            "VP Freeze layerlarini tekshiring.",
+            "Viewport ichiga ikki marta bosing."
+        ],
+        "maslahat": "Masshtabni o'rnatgandan keyin viewportni Lock qiling."
+    },
+
+    "Modeldan Layoutga o'tganda scale buziladi": {
+        "sabab": "Viewport scale, annotation scale yoki Model Space masshtabi noto'g'ri tashkil qilingan.",
+        "yechim": [
+            "Model Space'da geometriya 1:1 ekanini tekshiring.",
+            "Layoutga o'ting.",
+            "Viewportni tanlang.",
+            "Kerakli viewport scale ni belgilang.",
+            "Display Locked ni Yes qiling."
+        ],
+        "maslahat": "Arxitektura loyihalarida Model Space'da real o'lcham, Layoutda esa chop etish masshtabidan foydalaning."
+    }
+}
+
+
+def get_autocad_error(error_name):
+    return AUTOCAD_ERRORS.get(error_name)
+
+
+def get_autocad_error_names():
+    return list(AUTOCAD_ERRORS.keys())
+
+
+if __name__ == "__main__":
+    print(f"AUTOCAD XATOLARI: {len(AUTOCAD_ERRORS)} ta")
