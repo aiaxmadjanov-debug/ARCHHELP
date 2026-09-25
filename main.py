@@ -84,7 +84,6 @@ from knowledge.autocad_commands import AUTOCAD_COMMANDS
 from knowledge.autocad_errors import AUTOCAD_ERRORS
 
 from knowledge.calculator import calculator_menu
-from knowledge.ai_helper import AIHelper, ask_ai
 
 # =========================================================
 # ENV
@@ -6207,179 +6206,6 @@ async def foundation_calculate(
     )
 
 # =========================================================
-# AI YORDAMCHI
-# =========================================================
-
-class AIHelper(StatesGroup):
-    chat = State()
-
-
-async def ask_ai(question: str, state: FSMContext):
-
-    try:
-        from openai import AsyncOpenAI
-        import os
-
-        api_key = os.getenv("OPENAI_API_KEY")
-
-        if not api_key:
-            return (
-                "❌ OpenAI API key topilmadi.\n\n"
-                ".env faylda:\n"
-                "OPENAI_API_KEY=...\n"
-                "qatori borligini tekshiring."
-            )
-
-        client = AsyncOpenAI(
-            api_key=api_key
-        )
-
-        # Oldingi suhbatni saqlash
-        data = await state.get_data()
-
-        history = data.get("ai_history", [])
-
-        history.append({
-            "role": "user",
-            "content": question
-        })
-
-        # Juda uzun suhbat bo'lib ketmasligi uchun
-        history = history[-20:]
-
-        messages = [
-            {
-                "role": "system",
-                "content": (
-                    "Sen ARCHHELP nomli professional arxitektura "
-                    "yordamchisisan. "
-                    "Foydalanuvchiga o'zbek tilida javob ber. "
-                    "Arxitektura, qurilish, Revit, AutoCAD, "
-                    "3ds Max, chizma, konstruksiya va qurilish "
-                    "materiallari bo'yicha amaliy va tushunarli "
-                    "javob ber. "
-                    "Kerak bo'lsa bosqichma-bosqich tushuntir. "
-                    "AutoCAD buyruqlarini aniq command nomlari bilan "
-                    "ko'rsat. "
-                    "Revit parametrlarini aniq nomlari bilan "
-                    "tushuntir. "
-                    "Foydalanuvchi oddiy savol bersa, ortiqcha "
-                    "murakkablashtirma."
-                )
-            }
-        ]
-
-        messages.extend(history)
-
-        response = await client.responses.create(
-            model="gpt-5-mini",
-            input=messages
-        )
-
-        answer = response.output_text
-
-        history.append({
-            "role": "assistant",
-            "content": answer
-        })
-
-        history = history[-20:]
-
-        await state.update_data(
-            ai_history=history
-        )
-
-        return answer
-
-    except Exception as e:
-
-        print(
-            f"❌ AI ERROR: {type(e).__name__}: {e}"
-        )
-
-        return (
-            "❌ AI bilan bog‘lanishda xatolik yuz berdi.\n\n"
-            "Iltimos, birozdan keyin qayta urinib ko‘ring."
-        )
-
-
-# =========================================================
-# AI YORDAMCHI MENYUSI
-# =========================================================
-
-@dp.message(F.text == "🤖 AI yordamchi")
-async def ai_handler(
-    message: Message,
-    state: FSMContext
-):
-
-    await state.clear()
-
-    await state.set_state(
-        AIHelper.chat
-    )
-
-    await message.answer(
-        "🤖 ARCHHELP AI YORDAMCHI\n\n"
-        "Savolingizni yozing.\n\n"
-        "Men sizga arxitektura, qurilish, "
-        "Revit, AutoCAD va boshqa mavzularda "
-        "yordam beraman.\n\n"
-        "Masalan:\n"
-        "• Revitda devorni 300 mm qilish\n"
-        "• AutoCADda layer yaratish\n"
-        "• Beton hisoblash\n"
-        "• Qurilish materiallari haqida\n\n"
-        "⬅️ Ortga — chiqish"
-    )
-
-
-# =========================================================
-# AI SAVOL-JAVOB
-# =========================================================
-
-@dp.message(
-    AIHelper.chat,
-    F.text
-)
-async def ai_message_handler(
-    message: Message,
-    state: FSMContext
-):
-
-    question = message.text.strip()
-
-    if question == "⬅️ Ortga":
-
-        await state.clear()
-
-        await message.answer(
-            "🏠 Bosh menyu:",
-            reply_markup=main_menu
-        )
-
-        return
-
-    if not question:
-        await message.answer(
-            "❗ Savolni yozing."
-        )
-        return
-
-    await message.bot.send_chat_action(
-        chat_id=message.chat.id,
-        action="typing"
-    )
-
-    answer = await ask_ai(
-        question,
-        state
-    )
-
-    await message.answer(
-        answer
-    )
-# =========================================================
 # ADMIN BILAN BOGвЂLANISH
 # =========================================================
 
@@ -6513,5 +6339,6 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+
 
 
