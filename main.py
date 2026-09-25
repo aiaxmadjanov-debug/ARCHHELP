@@ -6330,6 +6330,40 @@ async def main():
 
     print("🚀 ARCHHELP ISHGA TUSHDI")
 
+    # Render uchun HTTP port
+    port = int(os.environ.get("PORT", 10000))
+
+    async def handle_client(reader, writer):
+        try:
+            await reader.read(1024)
+
+            response = (
+                "HTTP/1.1 200 OK\r\n"
+                "Content-Type: text/plain\r\n"
+                "Content-Length: 2\r\n"
+                "Connection: close\r\n"
+                "\r\n"
+                "OK"
+            )
+
+            writer.write(response.encode())
+            await writer.drain()
+
+        except Exception:
+            pass
+
+        finally:
+            writer.close()
+            await writer.wait_closed()
+
+    server = await asyncio.start_server(
+        handle_client,
+        "0.0.0.0",
+        port
+    )
+
+    print(f"🌐 Render port ochildi: {port}")
+
     await dp.start_polling(bot)
 
 
